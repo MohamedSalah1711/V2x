@@ -56,44 +56,10 @@
 
 ---
 
-## 📥 Installation
-
 ### Prerequisites
 - **ROS 2**: Humble or Jazzy
 - **OpenCV**: 4.5+
 - **ONNX Runtime**: 1.16+ (Auto-downloaded during build)
-
-### Build from Source
-```bash
-# Create workspace
-mkdir -p ~/ros2_ws/src && cd ~/ros2_ws/src
-
-# Clone package
-git clone https://github.com/Geekgineer/ros2_yolos_cpp.git
-
-# Install dependencies
-cd ~/ros2_ws
-rosdep update && rosdep install --from-paths src --ignore-src -y
-
-#Additional files and packages
-#extracting export_onnx.py to get yolov8n.onnx file
-#generally this file throws error when tried to execute by command "python3 export_onnx.py"
-#simple solution is to create a venv and execute within venv
-sudo apt install -y python3-venv python3-pip
-python3 -m venv venv
-
-source venv/bin/activate #activating python-venv
-pip install ultralytics
-python3 export_onnx.py   #after sucessful run, file yolov8n.onnx is created
-
-#deactivating python-venv
-deactivate
-
-# Build (Release mode recommended for performance)
-colcon build --packages-select ros2_yolos_cpp --cmake-args -DCMAKE_BUILD_TYPE=Release
-source install/setup.bash
-```
----
 
 ## 🛠️ Usage
 
@@ -198,28 +164,3 @@ Nodes can be configured via launch arguments or a YAML parameter file. See `conf
 | **Classifier** | `~/image_raw` | `~/classification` (Classification)<br>`~/debug_image` |
 
 ---
-
-## 🐳 Docker
-
-Run the stack without installing dependencies locally.
-
-```bash
-# Build Docker image
-docker build -t ros2_yolos_cpp .
-
-# Run with GPU support
-docker run --gpus all -it --rm \
-    -v /path/to/models:/models \
-    ros2_yolos_cpp \
-    ros2 launch ros2_yolos_cpp detector.launch.py model_path:=/models/yolov8n.onnx
-```
-
----
-
-## 📄 License
-
-This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. See [LICENSE](LICENSE) for details.
-
-<p align="center">
-  Made with ❤️ by the <a href="https://github.com/Geekgineer/YOLOs-CPP">YOLOs-CPP Team</a>
-</p>
