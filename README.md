@@ -24,6 +24,11 @@ This package is responsible for the initial object detection phase.
       <img src="late_fusion_for_yolos_cpp/assets/camera2.gif" width="400">
     </td>
   </tr>
+ <tr>
+    <td colspan="2" align="center" style="border:1px solid #ccc">
+      <img src="late_fusion_for_yolos_cpp/assets/camera4.gif" width="400">
+    </td>
+  </tr>
 </table>
 
 **2\.** **late_fusion_for_yolos_cpp**  
@@ -77,7 +82,9 @@ source install/setup.bash
 
 ## 🛠️ Usage
 
-### 1. Object Detection
+### There are two ways to run the entire setup.
+
+### 1. Manual executing
 Publishes `vision_msgs/Detection2DArray` with bounding boxes and class IDs.    
 To run the entire setup with all 3 cameras, we require 6 terminals.
 
@@ -119,6 +126,7 @@ Terminal 6: (To visualize output - Rviz2)
 ```bash
 rviz2
 ```
+
 * Select topic which you want to view visually.
  <table align="center" cellpadding="10"> 
   <tr>
@@ -127,3 +135,15 @@ rviz2
     </td>
   </tr>
  </table>
+ 
+### 2. Auto executing using tmuxinator
+* Installing Tmuxinator:
+  ```bash
+  apt install tmuxinator
+  ``` 
+  Rename ***auto_start.yml*** file as `.tmuxinator.yml`  
+  Replace `<container_name>` with your specific ***docker container*** name in auto_start file.
+  ```bash
+  tmuxinator start
+  ```
+  Visualize using Rviz as shown in previous step
