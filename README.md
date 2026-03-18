@@ -1,4 +1,9 @@
 # Late Fusion Yolos CPP
+
+<p align="center">
+  <img src="late_fusion_for_yolos_cpp/assets/Banner.png" width="100%"/>
+</p>
+
 This repository contains a complete pipeline for multi-camera object detection and panoramic image stitching using YOLOv8 and ROS2. The project is divided into two main functional blocks: detection and fusion.
  
 ## Project Architecture
@@ -8,15 +13,16 @@ The system operates in a sequential pipeline:
 
 ## Repository Structure
 **1\.** **ros2_yolos_cpp**
-This package is responsible for the initial object detection phase.
+This package is responsible for the initial object detection phase. 
 
+Parent Repository : https://github.com/Geekgineer/ros2_yolos_cpp/tree/main
   * Functionality: Subscribes to raw camera topics and applies YOLOv8 inference.
   * Multi-Camera Support: Designed to run concurrent instances for multiple camera feeds (e.g., a 3-camera setup).
   * Output: Publishes processed images with bounding boxes and class labels.
 
+## 🎬 Individual camera detection sample from Rviz
 <table align="center" cellpadding="10">
  <tr>
-    <b>Individual Detection sample from Rviz</b><br>
     <td align="center" style="border:1px solid #ccc">
       <img src="late_fusion_for_yolos_cpp/assets/camera3.gif" width="400">
     </td>
@@ -37,7 +43,7 @@ This package handles the "Late Fusion" or panoramic stitching of the detected ou
 * Functionality: Takes the YOLO-detected images from the three camera streams.
 * Output: A stitched, panoramic image that maintains detection information across the entire field of view.
 
-<b>Panoramic Stitched Image from Rviz</b><br>
+## 🎬 Panoramic stitched image sample from Rviz
 <img src="late_fusion_for_yolos_cpp/assets/Fused_Rviz_view.gif">
 
 ## Getting Started  
@@ -146,3 +152,15 @@ rviz2
   tmuxinator start
   ```
   Visualize using Rviz as shown in previous step
+  
+## 🐳 Docker
+
+Run the stack without installing dependencies locally.
+```bash
+# Build Docker image
+docker build -t ros2_yolos_cpp .
+```
+Starting Docker 
+```bash
+docker run --gpus all -it <docker_image_name> /bin/bash
+```
