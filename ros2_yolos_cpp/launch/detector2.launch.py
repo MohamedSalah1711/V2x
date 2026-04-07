@@ -44,7 +44,7 @@ def generate_launch_description():
     # Composable node container (multi-threaded for async inference)
     container = ComposableNodeContainer(
         name='yolos_container2',
-        namespace='',
+        namespace='camera_2',
         package='rclcpp_components',
         executable='component_container_mt',
         composable_node_descriptions=[
