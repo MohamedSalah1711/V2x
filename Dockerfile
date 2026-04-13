@@ -56,7 +56,7 @@ WORKDIR /ros2_ws
 
 # Clone the workspace source code from GitHub
 RUN mkdir -p src && \
-    git clone https://github.com/Pavankumarsp02/late_fusion_yolos_cpp src/late_fusion_yolos_cpp
+    git clone https://github.com/AhmedAliMohammed1/V2x.git
 
 # Install package dependencies from package.xml
 RUN apt-get update && \
